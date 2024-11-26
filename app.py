@@ -14,7 +14,7 @@ GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 genai.configure(api_key=GEMINI_API_KEY)
 
 
-# Hàm khởi tạo mô hìn
+# Hàm khởi tạo mô hình
 def initialize_model(model_name="gemini-1.5-flash"):
     model = genai.GenerativeModel(model_name)
     return model
@@ -36,15 +36,14 @@ def get_image_bytes(uploaded_image):
             image.save(image_bytes, format='PNG')
         else:
         # Nếu ảnh có định dạng khác, có thể xử lý hoặc đưa ra thông báo lỗi
-            raise ValueError("Ảnh phải có định dạng JPEG hoặc PNG.")
+            raise ValueError("Ảnh phải có định dạng JPEG,JPG hoặc PNG.")
         
-        # Hoặc sử dụng PNG tùy vào ảnh
         image_bytes = image_bytes.getvalue()
 
         # Trả về dữ liệu ảnh dưới dạng dict với các key 'mime_type' và 'data'
         image_info = {
-            "mime_type": uploaded_image.type,  # Ví dụ: 'image/jpeg'
-            "data": image_bytes  # Dữ liệu ảnh dưới dạng byte
+            "mime_type": uploaded_image.type, 
+            "data": image_bytes 
         }
     return image_info
 
